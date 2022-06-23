@@ -29,7 +29,31 @@ const toyota = new Toyota({color: 'red', title: 'Focus'});
 
 // TURNING THIS WHOLE PROCESS INTO A CLASS:
 
+class CarC {
+    // destructuring
+    constructor({ title }){
+        this.title = title;
+    }
 
+    driveC(){
+        return 'VROOOOM!';
+    }
+}
+
+// Inheritance using classes
+class ToyotaC extends CarC{
+    constructor( options ){
+        super(options);
+        this.color = options.color;
+    }
+
+    honkC(){
+        return 'BEEEP!';
+    }
+}
+
+const car = new CarC( {title: 'Focus'} );
+const toyotac = new ToyotaC( {color: 'red', title: 'Focus'} );
 
 
 
@@ -37,5 +61,5 @@ const toyota = new Toyota({color: 'red', title: 'Focus'});
 
 // TESTING
 
-document.getElementById('target1').innerHTML = toyota.color;
-document.getElementById('target2').innerHTML = toyota.honk();
+document.getElementById('target1').innerHTML = toyotac.title;
+document.getElementById('target2').innerHTML = toyotac.driveC();
