@@ -67,7 +67,7 @@ console.log("Hi there!");
 console.log(gen.next('clean clothes')); //leaving the laundry place with clean clothes
 */
 
-
+/*
 // another example on why generators
 function* colors(){
     yield 'red';
@@ -78,14 +78,14 @@ function* colors(){
 // creating our generator object
 const gen = colors();
 
-/*
 
-console.log(gen.next());
-console.log(gen.next());
-console.log(gen.next());
-console.log(gen.next());
 
-*/
+// console.log(gen.next());
+// console.log(gen.next());
+// console.log(gen.next());
+// console.log(gen.next());
+
+
 
 // WE CAN USE GENERATORS TO ITERATE OVER ANY DATA STRUCTURE THAT WE WANT! 
 
@@ -95,6 +95,32 @@ for (let color of gen){
 }
 
 console.log(myColors);
+*/
+
+
+// A PRACTICAL EXAMPLE
+const engineeringTeam = {
+    size: 3,
+    department: 'Engineering',
+    lead: 'Jill',
+    manager: 'Alex',
+    engineer: 'Dave'
+}
+
+function* TeamIterator(team){
+    yield team.lead;
+    yield team.manager;
+    yield team.engineer;
+}
+
+const gen = TeamIterator(engineeringTeam);
+const names = [];
+
+for (let name of gen){
+    names.push(name);
+}
+
+console.log(names);
 
 
 
