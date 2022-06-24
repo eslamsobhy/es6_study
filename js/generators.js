@@ -35,6 +35,8 @@ then we re-enter the generator function with the value passed to the next() meth
 so we resume executing the generator function exactly from the yield statement (where we stopped).
 
 */
+
+/*
 function* shopping(){
     // stuff on the sidewalk
 
@@ -63,10 +65,36 @@ console.log(gen.next('groceries')); //leaving the store with groceries into the 
 console.log("Hi there!");
 
 console.log(gen.next('clean clothes')); //leaving the laundry place with clean clothes
+*/
 
 
+// another example on why generators
+function* colors(){
+    yield 'red';
+    yield 'green';
+    yield 'blue';
+}
 
+// creating our generator object
+const gen = colors();
 
+/*
+
+console.log(gen.next());
+console.log(gen.next());
+console.log(gen.next());
+console.log(gen.next());
+
+*/
+
+// WE CAN USE GENERATORS TO ITERATE OVER ANY DATA STRUCTURE THAT WE WANT! 
+
+const myColors = [];
+for (let color of gen){
+    myColors.push(color);
+}
+
+console.log(myColors);
 
 
 
