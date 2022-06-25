@@ -99,7 +99,13 @@ console.log(myColors);
 
 
 // A PRACTICAL EXAMPLE
+const testingTeam = {
+    lead: 'Amanda',
+    tester: 'Bill'
+}
+
 const engineeringTeam = {
+    testingTeam, //testingTeam: testingTeam,
     size: 3,
     department: 'Engineering',
     lead: 'Jill',
@@ -111,6 +117,13 @@ function* TeamIterator(team){
     yield team.lead;
     yield team.manager;
     yield team.engineer;
+    const testingTeamMembers = TestingTeamIterator(team.testingTeam);
+    yield* testingTeamMembers; // delegation of generator!
+}
+
+function* TestingTeamIterator(team){
+    yield team.lead;
+    yield team.tester;
 }
 
 const gen = TeamIterator(engineeringTeam);
