@@ -153,7 +153,7 @@ class Comment{
     *[Symbol.iterator](){
         yield this.content;
         for (let child of this.children){
-            yield* child;
+            yield* child; //here comes the recursion part!
         }
     }
 }
