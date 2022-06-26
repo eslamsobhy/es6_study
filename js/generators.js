@@ -101,7 +101,11 @@ console.log(myColors);
 // A PRACTICAL EXAMPLE
 const testingTeam = {
     lead: 'Amanda',
-    tester: 'Bill'
+    tester: 'Bill',
+    [Symbol.iterator]: function* (){
+        yield this.lead;
+        yield this.tester;
+    }
 }
 
 const engineeringTeam = {
@@ -110,26 +114,28 @@ const engineeringTeam = {
     department: 'Engineering',
     lead: 'Jill',
     manager: 'Alex',
-    engineer: 'Dave'
+    engineer: 'Dave',
+    [Symbol.iterator]: function* (){
+        yield this.lead;
+        yield this.manager;
+        yield this.engineer;
+        yield* this.testingTeam;
+    }
 }
 
-function* TeamIterator(team){
-    yield team.lead;
-    yield team.manager;
-    yield team.engineer;
-    const testingTeamMembers = TestingTeamIterator(team.testingTeam);
-    yield* testingTeamMembers; // delegation of generator!
-}
+// Symbol iterator: is a tool that teaches objects how to respond to the For... Of iterator.
+// [Symbol.iterator] property will tell the for... of loop how should i iterate over an object.
+// in the example here:
+// first, we loop through the engineeringTeam object
+// to know which properties to consider, we go to the Symbol.iterator property
+// then we consider: lead, engineer, manager, and OOH yield*!!!!
+// that means that there an object that we need to figure out how to deal with it!
+// so we go to that object to look for the Symbol.iterator that will teach us how to deal with that object
+// then we consider lead and tester...
 
-function* TestingTeamIterator(team){
-    yield team.lead;
-    yield team.tester;
-}
-
-const gen = TeamIterator(engineeringTeam);
 const names = [];
 
-for (let name of gen){
+for (let name of engineeringTeam){
     names.push(name);
 }
 
