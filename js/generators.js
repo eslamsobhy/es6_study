@@ -97,7 +97,7 @@ for (let color of gen){
 console.log(myColors);
 */
 
-
+/*
 // A PRACTICAL EXAMPLE
 const testingTeam = {
     lead: 'Amanda',
@@ -140,9 +140,44 @@ for (let name of engineeringTeam){
 }
 
 console.log(names);
+*/
+
+// Practical example that uses: trees, generators, symbol iterator, and recursion...
+class Comment{
+    constructor(content, children){
+        this.content = content;
+        this.children = children;
+    }
+    // the Symbol.iterator is a little bit different
+    //  since we are dealing with a class and not object like in the last example. 
+    *[Symbol.iterator](){
+        yield this.content;
+        for (let child of this.children){
+            yield* child;
+        }
+    }
+}
 
 
+// Array helpers are not working with generators!!!
 
+const children = [
+    new Comment('Good comment!', []),
+    new Comment('Bad comment!', []),
+    new Comment('meh', [])
+];
+
+const tree = new Comment('That\'s a great post!', children);
+
+
+const comments = [];
+
+for (let comment of tree){
+    comments.push(comment);
+}
+
+console.log(comments);
+console.log(tree.children[0].content);
 
 
 
