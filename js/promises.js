@@ -39,7 +39,7 @@ console.log(promise);
 // HE RECOMMENDS USING XIOS OR...
 // LOOK FOR THAT!!
 
-const url = "https://jsonplaceholder.typicode.com/posts/";
+const url = "https://jsonplaceholder.typicode.com/posts123456/";
 
 fetch(url)
     // one of the big complaints of fetch is that the data argument here 
@@ -60,11 +60,15 @@ fetch(url)
     .then(() => {
         console.log("come on babby!");
     })
-    .catch(() => {
-        console.log("uh oh, something went wrong!!");
+    .catch((error) => {
+        console.log("uh oh, something went wrong!!" , error);
     })
 
 
+// IMPORTANT NOTE:
+// whenever we are using fetch:
+// if the server returns an error status code that is above 300,
+// it does not enter the catch case!!
 
 
 
